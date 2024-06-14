@@ -1,18 +1,18 @@
-import matter from 'gray-matter'
+import matter from "gray-matter";
 
 export async function fetchGithubRepo(url: string) {
   try {
     const res = await fetch(url, {
       headers: {
         "Authorization": `token ${process.env.GITHUB_TOKEN}`,
-        cache: 'force-cache',
+        cache: "force-cache",
       }
-    })
+    });
     if (!res.ok) {
-      throw `ステータスコードエラー：${res.status}`
+      throw `ステータスコードエラー：${res.status}`;
     } else {
-      return res.json()
-    }
+      return res.json();
+    };
   } catch(err) {
     console.log(`repofetchデータの処理中にエラー：${err}`);
   }
@@ -21,34 +21,27 @@ export async function fetchGithubRepo(url: string) {
 export async function fetchGithubMakeArticle(url: string, fileName: string) {
   try {
     const res = await fetch(url + fileName, {
-      headers: {"Authorization": `token ${process.env.GITHUB_TOKEN}`}
+      headers: {"Authorization": `token ${process.env.GITHUB_TOKEN}`},
+      cache: "force-cache",
     })
     if (!res.ok) {
-      throw `ステータスコードエラー：${res.status}`
+      throw `ステータスコードエラー：${res.status}`;
     } else {
-      const data = await res.json()
-      const buffer = Buffer.from(data.content, 'base64');
+      const data = await res.json();
+      const buffer = Buffer.from(data.content, "base64");
       const fileContents = buffer.toString("utf-8");
       const matterResult = matter(fileContents)
       if (!matterResult.data.published) {
-        return
-      }
-      // if (matterResult.data.qiitaId) {
-      //   return {
-      //     id: fileName.replace(/\.md$/, ''),
-      //     ...(matterResult.data as { title: string; emoji: string; type: string; topics: string[]; published: boolean; date: string; }),
-      //     content: matterResult.content,
-      //     from : 'Qiita'
-      //   }
-      // }
+        return;
+      };
       return {
-        id: fileName.replace(/\.md$/, ''),
+        id: fileName.replace(/\.md$/, ""),
         ...(matterResult.data as { title: string; emoji: string; type: string; topics: string[]; published: boolean; date: string; }),
         content: matterResult.content,
-        from: 'Zenn'
-      }
+        from: "Zenn"
+      };
     }
   } catch(err) {
     console.log(`contentfetchデータの処理中にエラー：${err}`);
-  }
-}
+  };
+};

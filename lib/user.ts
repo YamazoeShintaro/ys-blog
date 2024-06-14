@@ -1,8 +1,9 @@
-import { UserResponse } from '@/components/types/Response'
+import { UserResponse } from "@/components/types/Response";
 
 export async function getUserData() {
   const UserData: UserResponse = await fetch("https://api.github.com/users/YamazoeShintaro", {
-    headers: {"Authorization": `token ${process.env.GITHUB_TOKEN}`}
+    headers: {"Authorization": `token ${process.env.GITHUB_TOKEN}`},
+    cache: "force-cache",
   })
     .then(res => {
         return res.json();
@@ -11,4 +12,4 @@ export async function getUserData() {
         console.log(err);
     });
   return UserData;
-}
+};

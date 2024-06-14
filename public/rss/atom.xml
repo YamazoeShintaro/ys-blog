@@ -41,10 +41,10 @@
 ```jsx
 // シンボルから返される値は一意である。
 let sym1 = Symbol()
-let sym2 = Symbol('foo')
-let sym3 = Symbol('foo')
+let sym2 = Symbol("foo")
+let sym3 = Symbol("foo")
 
-Symbol('foo') === Symbol('foo')  // false
+Symbol("foo") === Symbol("foo")  // false
 ```
 
 ```jsx
@@ -83,16 +83,16 @@ for...inは主にオブジェクトのループ専用として使われる。変
 [in と hasOwnProperty() の違い - Qiita](https://qiita.com/shuhei/items/dabf0ca097f05264baf9)
 
 ```jsx
-Object.prototype.hoge = 'hogeValue';
-Array.prototype.fuga = 'fugaValue';
+Object.prototype.hoge = "hogeValue";
+Array.prototype.fuga = "fugaValue";
 
-const obj = {key1: 'value1', key2: 'value2', key3: 'value3'};
+const obj = {key1: "value1", key2: "value2", key3: "value3"};
 
 for(let o in obj) {
     console.log(o);
 }
 
-const array = ['value1', 'value2', 'value3'];
+const array = ["value1", "value2", "value3"];
 
 for(let a in array) {
     console.log(a);
@@ -126,10 +126,10 @@ hoge // そしてObjectで追加したhogeプロパティはarrayに継承され
 `obj.hasOwnProperty(o)` はプロトタイプチェーンまで遡ることはないので `hoge`, `fuga` で `True` になる事はない。
 
 ```jsx
-Object.prototype.hoge = 'hogeValue';
-Array.prototype.fuga = 'fugaValue';
+Object.prototype.hoge = "hogeValue";
+Array.prototype.fuga = "fugaValue";
 
-const obj = {key1: 'value1', key2: 'value2', key3: 'value3'};
+const obj = {key1: "value1", key2: "value2", key3: "value3"};
 
 for(let o in obj) {
     if (obj.hasOwnProperty(o)) {
@@ -137,7 +137,7 @@ for(let o in obj) {
     }
 }
 
-const array = ['value1', 'value2', 'value3'];
+const array = ["value1", "value2", "value3"];
 
 for(let a in array) {
     if (array.hasOwnProperty(a)) {
@@ -166,9 +166,9 @@ obj.foo = 42; // {foo: 0}はミュータブルなのでfooを変更できる
 obj = {bar: 0}; // error! objへ再代入はできない！
 
 let immutableObj = new Immutable({foo: 0}); // Immutableオブジェクトを生成してimmutableObjへ代入する。イミュータブルなオブジェクトはImmutable.jsなどのライブラリで生成できます
-immutableObj.set('foo', 42); // immutableオブジェクトは変更できない
-immutableObj.get('foo'); // fooは42ではなく0のまま
-immutableObj = immutableObj.set('foo', 42); // 再代入することで変更できる
+immutableObj.set("foo", 42); // immutableオブジェクトは変更できない
+immutableObj.get("foo"); // fooは42ではなく0のまま
+immutableObj = immutableObj.set("foo", 42); // 再代入することで変更できる
 ```
 
 ## Object.keys
@@ -216,7 +216,7 @@ class Car {
   constructor(make, model) {
     this.make = make
     this.model = model
-    this.userGears = ['P', 'N', 'R', 'D']
+    this.userGears = ["P", "N", "R", "D"]
     this.userGear = this.userGears[0]
   }
   shift(gear) {
@@ -235,14 +235,14 @@ console.log(car2)
 console.log(car2.make)
 ```
 
-上記の状態ではメソッドを使用しなくても `car1.userGear = 'X'` で変更可能となっており、アクセス制御がなく予期しないデータの変更をされてしまう可能性があり良くない。それを解決する方法として「アクセスプロパティ」を利用する。 `get, set` をセットで使用する。後で詳しくみていく。今はこれらがメンバ変数を操作してるという理解で大丈夫だと思う。 `_` を変数の前に付けるだけでこれが `get, set` 以外で直接参照されているのはおかしい事を教えてくれるに過ぎず機能を制限出来るわけでない事に注意が必要である。
+上記の状態ではメソッドを使用しなくても `car1.userGear = "X"` で変更可能となっており、アクセス制御がなく予期しないデータの変更をされてしまう可能性があり良くない。それを解決する方法として「アクセスプロパティ」を利用する。 `get, set` をセットで使用する。後で詳しくみていく。今はこれらがメンバ変数を操作してるという理解で大丈夫だと思う。 `_` を変数の前に付けるだけでこれが `get, set` 以外で直接参照されているのはおかしい事を教えてくれるに過ぎず機能を制限出来るわけでない事に注意が必要である。
 
 ```jsx
 class Car {
   constructor(make, model) {
     this.make = make
     this.model = model
-    this._userGears = ['P', 'N', 'R', 'D']
+    this._userGears = ["P", "N", "R", "D"]
     this._userGear = this._userGears[0]
   }
   get userGear() { return this._userGear; }
@@ -262,10 +262,10 @@ console.log(car1.userGear)
 
 // 実行結果
 Car {
-  make: 'Tesla',
-  model: 'Model S',
-  _userGears: [ 'P', 'N', 'R', 'D' ],
-  _userGear: 'P'
+  make: "Tesla",
+  model: "Model S",
+  _userGears: [ "P", "N", "R", "D" ],
+  _userGear: "P"
 }
 P
 ```
@@ -279,7 +279,7 @@ const Car =  (function() {
 	  constructor(make, model) {
       this.make = make
       this.model = model
-      this._userGears = ['P', 'N', 'R', 'D']
+      this._userGears = ["P", "N", "R", "D"]
       carProps.set(this, { userGear: this._userGears[0] })
     }
     get userGear() { return carProps.get(this).userGear; }
@@ -297,10 +297,10 @@ const car1 = new Car("Tesla", "Model S")
 console.log(car1)
 
 // 実行結果
-Car {make: 'Tesla', model: 'Model S', _userGears: Array(4)}make: "Tesla"model: "Model S"_userGears: (4) ['P', 'N', 'R', 'D']userGear: (...)[[Prototype]]: Object
+Car {make: "Tesla", model: "Model S", _userGears: Array(4)}make: "Tesla"model: "Model S"_userGears: (4) ["P", "N", "R", "D"]userGear: (...)[[Prototype]]: Object
 ```
 
-外からは `car1.userGear = 'R'` で値を変更出来なくなる。
+外からは `car1.userGear = "R"` で値を変更出来なくなる。
 
 ## プロトタイプ
 
@@ -321,7 +321,7 @@ const Car =  (function() {
     constructor(make, model) {
       this.make = make
       this.model = model
-      this._userGears = ['P', 'N', 'R', 'D']
+      this._userGears = ["P", "N", "R", "D"]
       carProps.set(this, { userGear: this._userGears[0] })
     }
     get userGear() { return carProps.get(this).userGear; }
@@ -339,7 +339,7 @@ const car1 = new Car()
 const car2 = new Car()
 console.log(car1.shift === Car.prototype.shift)
 console.log(car1.shift === car2.shift)
-car1.shift('D')
+car1.shift("D")
 console.log(car1.userGear)
 
 // メソッドを小文字でも大文字に変換するように上書きした
@@ -348,7 +348,7 @@ car1.shift = function(gear) { this.userGear = gear.toUpperCase() }
 // ではないと出力される。
 console.log(car1.shift === Car.prototype.shift)
 console.log(car1.shift === car2.shift)
-car1.shift('d')
+car1.shift("d")
 console.log(car1.userGear)
 
 // 実行結果
@@ -509,17 +509,17 @@ console.log(s instanceof Object)
 ```jsx
 class Super {
     constructor() {
-        this.name = 'Super'
+        this.name = "Super"
         this.isSuper = true
     }
 }
 
-Super.prototype.sneaky = '非推奨!'
+Super.prototype.sneaky = "非推奨!"
 
 class Sub extends Super {
     constructor() {
         super()
-        this.name = 'Sub'
+        this.name = "Sub"
         this.isSub = true
     }
 }
@@ -528,7 +528,7 @@ const obj = new Sub()
 
 for(let p in obj) {
     console.log(`${p}: ${obj[p]}` + 
-                (obj.hasOwnProperty(p)? '' : ' (継承)'))
+                (obj.hasOwnProperty(p)? "" : " (継承)"))
 }
 ```
 

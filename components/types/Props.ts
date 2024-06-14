@@ -1,7 +1,7 @@
 import { Article } from "./Article";
 
 export type TagProps = {
-    tag: string
+    tag: string;
 };
 
 export type CurrentPageProps = {

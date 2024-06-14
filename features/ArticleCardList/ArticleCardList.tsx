@@ -1,31 +1,25 @@
-import Body from "@/components/layouts/body/Body";
-import Header from "@/components/layouts/header/Header";
-import MenuBar from "@/components/layouts/menuBar/MenuBar";
 import { ArticleResponse } from "@/components/types/Response";
-import { generateFeedXml } from "@/lib/generators";
-import { getSortedPostsData } from "@/lib/posts";
 import { getUserData } from "@/lib/user";
 import { fetchGithubMakeArticle, fetchGithubRepo } from "@/lib/utility/getArticle";
-import {TagProps} from "@/components/types/Props";
-// import ArticleCard from "@/features/ArticleCard/ArticleCard";
-import React from 'react'
-import Image from 'next/image'
+import { TagProps } from "@/components/types/Props";
+import React from "react";
+import Image from "next/image";
 
-const ArticleCardList = async ({tag}: TagProps) => {
-    const zennArticles: ArticleResponse[] = await fetchGithubRepo('https://api.github.com/repos/YamazoeShintaro/zenn-articles/contents/articles');
+const ArticleCardList = async ({ tag }: TagProps) => {
+    const zennArticles: ArticleResponse[] = await fetchGithubRepo("https://api.github.com/repos/YamazoeShintaro/zenn-articles/contents/articles");
 
     // console.log(zennArticles);
 
     const datas = await (async (zennArticles) => {
       if (zennArticles) {
         return await Promise.all(zennArticles.map( async (article: ArticleResponse) => {
-          return fetchGithubMakeArticle('https://api.github.com/repos/YamazoeShintaro/zenn-articles/contents/articles/', article.name);
+          return fetchGithubMakeArticle("https://api.github.com/repos/YamazoeShintaro/zenn-articles/contents/articles/", article.name);
         }));
       }
     })(zennArticles);
 
     const removeFalsyDatas = datas?.filter(Boolean);
-    console.log(removeFalsyDatas);
+    // console.log(removeFalsyDatas);
 
     const sortedPostData = datas?.sort((a, b) => {
       if (a!.date === b!.date){
@@ -41,27 +35,26 @@ const ArticleCardList = async ({tag}: TagProps) => {
     // console.log(sortedPostData);
 
     // if (process.env.PRODUCTION) {
-    //   console.log('本番環境のためRSSを生成')
+    //   console.log("本番環境のためRSSを生成")
     //   generateFeedXml(sortedPostData)
     // }
 
     const userData = await getUserData();
     // console.log(userData);
 
-
     // tagでフィルターをかけたArticle[]をmapで開いて、ArticleCardに一つずつPropsとして渡す。
     const filteredPostData = sortedPostData?.filter(postData => postData?.topics.includes(tag));
 
     // console.log(sortedPostData);
-    
+
     console.log(tag);
     console.log(filteredPostData);
     console.log(3);
 
   return (
-    <div className='grid lg:grid-cols-2 px-10 py-8 gap-10'>
+    <div className="grid lg:grid-cols-2 px-10 py-8 gap-10">
       {sortedPostData?.filter(postData => postData?.topics.includes(tag)).map((item, index) => (
-        <div key={index} className='drop-shadow-lg duration-300 hover:opacity-60'>
+        <div key={index} className="drop-shadow-lg duration-300 hover:opacity-60">
           {/* imageはタグの種類分の画像を用意して、タグに合わせたサムネにする */}
           <Image
               src="/thumbnail_sample.JPG"

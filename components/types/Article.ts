@@ -8,4 +8,4 @@ export type Article = {
     date: string;
     content: string;
     from: string;
-}
+};
