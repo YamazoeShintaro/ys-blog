@@ -6,18 +6,17 @@ import { generateFeedXml } from "@/lib/generators";
 import { getSortedPostsData } from "@/lib/posts";
 import { getUserData } from "@/lib/user";
 import { fetchGithubMakeArticle, fetchGithubRepo } from "@/lib/utility/getArticle";
-// import { Article } from "@/components/types/Article";
-// import { generateFeedXml } from "@/lib/generators";
-// import { getPostsData, getSortedPostsData } from "@/lib/posts";
-// import { getUserData } from "@/lib/user";
-// import { GetStaticProps } from "next";
+import React from 'react';
+import {TagProps} from "@/components/types/Props";
+import ArticleCardList from "@/features/ArticleCardList/ArticleCardList";
 
-export default async function HomePage() {
+const MainContainer = async ({ tag }: TagProps) => {
     return (
-        <main>
-            <Header />
-            <MenuBar currentPage="home"/>
-            <Body tag='最新記事'/>
-        </main>
-    );
+        <div>
+            <h1 className='border-solid border-b mx-16 pt-8 pb-2 text-3xl font-light flex justify-center'>{tag}</h1>
+            <ArticleCardList tag={tag}/>
+        </div>
+  );
 };
+
+export default MainContainer;
