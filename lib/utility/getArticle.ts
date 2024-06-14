@@ -3,7 +3,10 @@ import matter from 'gray-matter'
 export async function fetchGithubRepo(url: string) {
   try {
     const res = await fetch(url, {
-      headers: {"Authorization": `token ${process.env.GITHUB_TOKEN}`}
+      headers: {
+        "Authorization": `token ${process.env.GITHUB_TOKEN}`,
+        cache: 'force-cache',
+      }
     })
     if (!res.ok) {
       throw `ステータスコードエラー：${res.status}`
