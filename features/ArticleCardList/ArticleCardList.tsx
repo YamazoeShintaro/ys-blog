@@ -21,7 +21,7 @@ const ArticleCardList = async ({ tag }: TagProps) => {
     const removeFalsyDatas = datas?.filter(Boolean);
     // console.log(removeFalsyDatas);
 
-    const sortedPostData = datas?.sort((a, b) => {
+    const sortedPostData = removeFalsyDatas?.sort((a, b) => {
       if (a!.date === b!.date){
         return 0
       }

@@ -14,10 +14,10 @@ export async function getSortedPostsData(articles: Article[]){
 };
 
 export function getAllPostIds(articles: Article[]) {
-  return articles.map((article: Article) => {
+  return articles?.map((article: Article | undefined) => {
     return {
       params: {
-          id: article.id
+          id: article?.id
       }
     };
   });
