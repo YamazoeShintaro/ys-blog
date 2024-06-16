@@ -22,6 +22,18 @@ h2 {
   margin-bottom: 6px;
 }
 
+p {
+  line-height: 35px;
+}
+
+a {
+  color: blue; /* URLを青色に変更 */
+  text-decoration: underline; /* 下線を追加 */
+}
+a:hover {
+  opacity: 0.5;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
