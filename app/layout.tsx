@@ -6,6 +6,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 config.autoAddCss = false;
 
 export const metadata: Metadata = {
+  icons: "",
   title: "ys-blog",
   description: "駆け出しエンジニアのブログ",
 };

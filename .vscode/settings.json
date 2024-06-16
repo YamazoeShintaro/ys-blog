@@ -5,6 +5,7 @@
         "fortawesome",
         "Katex",
         "nextjs",
+        "prismjs",
         "rehype",
         "zenn"
     ]

@@ -4,6 +4,7 @@ import { fetchGithubMakeArticle, fetchGithubRepo } from "@/lib/utility/getArticl
 import { TagProps } from "@/components/types/Props";
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const ArticleCardList = async ({ tag }: TagProps) => {
     const zennArticles: ArticleResponse[] = await fetchGithubRepo("https://api.github.com/repos/YamazoeShintaro/zenn-articles/contents/articles");
@@ -54,7 +55,7 @@ const ArticleCardList = async ({ tag }: TagProps) => {
   return (
     <div className="grid lg:grid-cols-2 px-10 py-8 gap-10">
       {sortedPostData?.filter(postData => postData?.topics.includes(tag)).map((item, index) => (
-        <div key={index} className="drop-shadow-lg duration-300 hover:opacity-60">
+        <Link href={`/posts/${item!.id}`} key={index} className="drop-shadow-lg duration-300 hover:opacity-60">
           {/* imageはタグの種類分の画像を用意して、タグに合わせたサムネにする */}
           <Image
               src="/thumbnail_sample.JPG"
@@ -64,7 +65,7 @@ const ArticleCardList = async ({ tag }: TagProps) => {
           />
           <h2>{item?.title}</h2>
           <p>{item?.date}</p>
-        </div>
+        </Link>
       ))}
     </div>
   )
