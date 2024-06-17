@@ -1,15 +1,11 @@
 import Body from "@/components/layouts/body/Body";
-import Header from "@/components/layouts/header/Header";
 import MenuBar from "@/components/layouts/menuBar/MenuBar";
-import React from "react";
 
-function NodeJsPage() {
+export default function NodeJsPage() {
     return (
         <div>
             <MenuBar currentPage="Node.js"/>
-            <Body tag="Node.js"/>
+            <Body category="Node.js"/>
         </div>
   );
 };
-
-export default NodeJsPage;

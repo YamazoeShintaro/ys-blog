@@ -1,9 +1,7 @@
+import { faCat, faPencil } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCat, faPencil } from "@fortawesome/free-solid-svg-icons"
-import React from "react";
-import Link from "next/link";
 
-const Header = () => {
+export default function Header() {
     return (
         <div className="flex justify-center items-center h-40 bg-ocean-blue">
             <div className="flex relative pl-14 pr-9">
@@ -14,5 +12,3 @@ const Header = () => {
         </div>
     );
 };
-
-export default Header;

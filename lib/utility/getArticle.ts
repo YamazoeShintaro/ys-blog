@@ -15,15 +15,15 @@ export async function fetchGithubRepo(url: string) {
     };
   } catch(err) {
     console.log(`repofetchデータの処理中にエラー：${err}`);
-  }
-}
+  };
+};
 
 export async function fetchGithubMakeArticle(url: string, fileName: string) {
   try {
     const res = await fetch(url + fileName, {
       headers: {"Authorization": `token ${process.env.GITHUB_TOKEN}`},
       cache: "force-cache",
-    })
+    });
     if (!res.ok) {
       throw `ステータスコードエラー：${res.status}`;
     } else {
@@ -40,7 +40,7 @@ export async function fetchGithubMakeArticle(url: string, fileName: string) {
         content: matterResult.content,
         from: "Zenn"
       };
-    }
+    };
   } catch(err) {
     console.log(`contentfetchデータの処理中にエラー：${err}`);
   };

@@ -1,15 +1,11 @@
 import Body from "@/components/layouts/body/Body";
-import Header from "@/components/layouts/header/Header";
 import MenuBar from "@/components/layouts/menuBar/MenuBar";
-import React from "react";
 
-function NextJsPage() {
+export default function NextJsPage() {
     return (
         <div>
             <MenuBar currentPage="Next.js"/>
-            <Body tag="Next.js"/>
+            <Body category="Next.js"/>
         </div>
   );
 };
-
-export default NextJsPage;

@@ -1,29 +1,30 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./prism.css";
+
+import Header from "@/components/layouts/header/Header";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import Header from "@/components/layouts/header/Header";
 
 config.autoAddCss = false;
 
 export const metadata: Metadata = {
-  icons: "",
-  title: "ys-blog",
-  description: "駆け出しエンジニアのブログ",
+    icons: "",
+    title: "ys-blog",
+    description: "駆け出しエンジニアのブログ",
 };
 
 export default function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-  return (
-    <html lang="ja">
-      <body className="bg-cream-blue">
-        <Header />
-        {children}
-      </body>
-    </html>
-  );
+    return (
+        <html lang="ja">
+            <body className="bg-cream-blue">
+                <Header />
+                {children}
+            </body>
+        </html>
+    );
 }

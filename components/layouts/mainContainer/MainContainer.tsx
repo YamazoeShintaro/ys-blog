@@ -1,16 +1,13 @@
-import React from "react";
-import { TagProps } from "@/components/types/Props";
+import { CategoryProps } from "@/components/types/Props";
 import ArticleCardList from "@/features/ArticleCardList/ArticleCardList";
 
-const MainContainer = async ({ tag }: TagProps) => {
+export default async function MainContainer({ category }: CategoryProps) {
     return (
-        <div className="">
-            <h1 className="border-solid border-b mx-16 py-2 text-3xl font-light flex justify-center">{tag}</h1>
-            <div className="mt-4">
-                <ArticleCardList tag={tag}/>
+        <div>
+            <h1 className="border-solid border-b border-shine-muscat mx-12 pt-2 pb-4 text-2xl font-light flex justify-center">{category}</h1>
+            <div className="mt-6">
+                <ArticleCardList category={category}/>
             </div>
         </div>
-  );
+    );
 };
-
-export default MainContainer;

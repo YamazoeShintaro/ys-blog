@@ -30,8 +30,6 @@ p {
   position: relative;
   width: 100%; /* 親要素の幅を設定 */
   padding-top: 55.5%; /* 高さを設定（アスペクト比を維持） */
-  /* margin-top: 25px; */
-  /* background-color: #ededed; */
 }
 
 .image-container img {

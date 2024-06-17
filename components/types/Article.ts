@@ -9,3 +9,19 @@ export type Article = {
     content: string;
     from: string;
 };
+
+export type ArticleResponse = {
+    name: string;
+    sha: string;
+    size: number;
+    url: string;
+    html_url: string;
+    git_url: string;
+    download_url: string;
+    type: string;
+    _link: {
+        self: string;
+        git: string;
+        html: string;
+    };
+};

@@ -1,14 +1,11 @@
 import Body from "@/components/layouts/body/Body";
 import MenuBar from "@/components/layouts/menuBar/MenuBar";
-import React from "react";
 
-function JsTsPage() {
+export default function JsTsPage() {
     return (
         <div>
-            <MenuBar currentPage="JS/TS"/>
-            <Body tag="JS/TS" />
+            <MenuBar currentPage="JS / TS"/>
+            <Body category="JavaScript / TypeScript" />
         </div>
   );
 };
-
-export default JsTsPage;
