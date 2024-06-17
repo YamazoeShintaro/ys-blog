@@ -9,9 +9,8 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 config.autoAddCss = false;
 
 export const metadata: Metadata = {
-    icons: "",
     title: "ys-blog",
-    description: "駆け出しエンジニアのブログ",
+    description: "【フロントエンドエンジニア】駆け出しエンジニアによる駆け出しエンジニアのためのブログです。日々の学習の中で疑問に思ったことなどをアウトプットとして投稿します。駆け出しエンジニアの方々の参考になれば幸いです。",
 };
 
 export default function RootLayout({
