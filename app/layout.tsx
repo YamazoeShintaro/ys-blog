@@ -3,6 +3,7 @@ import "./globals.css";
 import "./prism.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
+import Header from "@/components/layouts/header/Header";
 
 config.autoAddCss = false;
 
@@ -19,6 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
+      <Header />
       <body className="bg-cream-blue">{children}</body>
     </html>
   );

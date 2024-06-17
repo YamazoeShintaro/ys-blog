@@ -6,7 +6,6 @@ import React from "react";
 function MySqlPage() {
     return (
         <div>
-            <Header />
             <MenuBar currentPage="MySQL"/>
             <Body tag="MySQL"/>
         </div>

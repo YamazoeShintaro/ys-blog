@@ -5,7 +5,6 @@ import MenuBar from "@/components/layouts/menuBar/MenuBar";
 export default async function HomePage() {
     return (
         <main>
-            <Header />
             <MenuBar currentPage="home"/>
             <Body tag="最新記事"/>
         </main>

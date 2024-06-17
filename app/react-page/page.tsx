@@ -6,7 +6,6 @@ import React from "react";
 function ReactPage() {
     return (
         <div>
-            <Header />
             <MenuBar currentPage="React"/>
             <Body tag="React"/>
         </div>

@@ -6,7 +6,6 @@ import React from "react";
 function NextJsPage() {
     return (
         <div>
-            <Header />
             <MenuBar currentPage="Next.js"/>
             <Body tag="Next.js"/>
         </div>

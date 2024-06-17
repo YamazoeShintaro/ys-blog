@@ -100,7 +100,6 @@ export default async function Post({ params }: { params: {id: string} }) {
 
   return (
     <>
-      <Header />
       <main className='flex justify-center'>
         <div className='w-4/5 max-w-400'>
           <article>

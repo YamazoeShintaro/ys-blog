@@ -6,7 +6,6 @@ import React from "react";
 function OthersPage() {
     return (
         <div>
-            <Header />
             <MenuBar currentPage="others"/>
             <Body tag="その他"/>
         </div>

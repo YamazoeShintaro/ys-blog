@@ -6,7 +6,6 @@ import React from "react";
 function JsTsPage() {
     return (
         <div>
-            <Header />
             <MenuBar currentPage="JS/TS"/>
             <Body tag="JS/TS" />
         </div>
