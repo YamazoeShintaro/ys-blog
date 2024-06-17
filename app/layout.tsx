@@ -20,8 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <Header />
-      <body className="bg-cream-blue">{children}</body>
+      <body className="bg-cream-blue">
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
