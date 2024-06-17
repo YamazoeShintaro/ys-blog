@@ -27,7 +27,9 @@ const MenuBar = ({ currentPage }: CurrentPageProps) => {
                         className={item.pageName === currentPage
                             ? "text-ocean-blue font-medium border-b border-solid border-ocean-blue text-lg px-5 py-2"
                             : "text-lg font-light px-5 py-2 duration-300 hover:opacity-50 hover:border-solid hover:border-b-2"}
-                    >{item.content}</Link>
+                    >
+                        {item.content}
+                    </Link>
                     {item.border && <div className="text-xl font-thin flex items-center">|</div>}
                 </>
             ))}
