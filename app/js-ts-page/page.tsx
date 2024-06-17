@@ -5,7 +5,7 @@ export default function JsTsPage() {
     return (
         <div>
             <MenuBar currentPage="JS / TS"/>
-            <Body category="JavaScript / TypeScript" />
+            <Body category="JS / TS" />
         </div>
   );
 };
