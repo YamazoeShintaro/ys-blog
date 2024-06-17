@@ -18,15 +18,15 @@ export default function MenuBar({ currentPage }: CurrentPageProps) {
     ];
 
     return (
-        <div className="bg-white px-10 py-2 flex flex-wrap justify-center">
+        <div className="bg-white px-4 py-2 flex flex-wrap justify-center">
             {navItems.map((item, index) => (
                 <>
                     <Link
                         key={index}
                         href={item.path}
                         className={item.pageName === currentPage
-                            ? "text-ocean-blue font-medium border-b border-solid border-ocean-blue text-lg mx-5 px-5 py-2"
-                            : "text-lg font-light mx-5 px-5 py-2 duration-300 hover:opacity-50 hover:border-solid hover:border-b-2"}
+                            ? "text-ocean-blue font-medium border-b border-solid border-ocean-blue text-lg mx-2 px-1 py-2 sm:mx-5 sm:px-5"
+                            : "text-lg font-light mx-2 px-1 py-2 sm:mx-5 sm:px-5 duration-300 hover:opacity-50 hover:border-solid hover:border-b-2"}
                     >
                         {item.content}
                     </Link>

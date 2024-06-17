@@ -53,7 +53,7 @@ export default async function Post({ params }: { params: { id: string } }) {
     <main className='flex justify-center'>
       <div className='w-4/5 max-w-400'>
         <article>
-          <h1 className=''>{articleData!.title}</h1>
+          <h1>{articleData!.title}</h1>
           <div className='mb-8'>
               <Date dateString={articleData!.date!} />
           </div>

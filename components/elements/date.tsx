@@ -1,8 +1,20 @@
-import { format, parseISO } from 'date-fns';
+import { format } from 'date-fns';
 
-export default function Date({ dateString }: { dateString: string }) {
-    const reDateString = dateString.replace(/\./g, '-');
-    const date = parseISO(reDateString);
+type DateProps = {
+  dateString: string;
+}
 
-    return <time className='w-1/2 tent-right' dateTime={dateString}>{format(date, 'LLLL d, yyyy')}</time>
-};
+export default function DateComponent({ dateString }: DateProps) {
+  const [year, month, day] = dateString.split('.').map(part => parseInt(part, 10));
+  const date = new Date(year, month - 1, day);
+
+  if (isNaN(date.getTime())) {
+    throw new Error('Invalid date value');
+  }
+
+  return (
+    <time className="w-1/2 text-right" dateTime={date.toISOString()}>
+      {format(date, 'LLLL d, yyyy')}
+    </time>
+  );
+}
