@@ -26,6 +26,18 @@ p {
   line-height: 35px;
 }
 
+.image-container {
+  position: relative;
+  width: 100%; /* 親要素の幅を設定 */
+  padding-top: 55.5%; /* 高さを設定（アスペクト比を維持） */
+  /* margin-top: 25px; */
+  /* background-color: #ededed; */
+}
+
+.image-container img {
+  object-fit: contain; /* contain か cover を使用 */
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
@@ -33,17 +45,6 @@ p {
     --background-end-rgb: 0, 0, 0;
   }
 }
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
 
 @layer utilities {
   .text-balance {
