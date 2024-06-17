@@ -2,69 +2,36 @@ import { ArticleResponse } from "@/components/types/Response";
 import { getUserData } from "@/lib/user";
 import { fetchGithubMakeArticle, fetchGithubRepo } from "@/lib/utility/getArticle";
 import { TagProps } from "@/components/types/Props";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { getAllSortedPostsData } from "@/lib/posts";
 
 const ArticleCardList = async ({ tag }: TagProps) => {
-    const zennArticles: ArticleResponse[] = await fetchGithubRepo("https://api.github.com/repos/YamazoeShintaro/zenn-articles/contents/articles");
-
-    // console.log(zennArticles);
-
-    const datas = await (async (zennArticles) => {
-      if (zennArticles) {
-        return await Promise.all(zennArticles.map( async (article: ArticleResponse) => {
-          return fetchGithubMakeArticle("https://api.github.com/repos/YamazoeShintaro/zenn-articles/contents/articles/", article.name);
-        }));
-      }
-    })(zennArticles);
-
-    const removeFalsyDatas = datas?.filter(Boolean);
-    // console.log(removeFalsyDatas);
-
-    const sortedPostData = removeFalsyDatas?.sort((a, b) => {
-      if (a!.date === b!.date){
-        return 0
-      }
-      if (a!.date < b!.date) {
-          return 1
-      } else {
-          return -1
-      }
-    })
-
-    // console.log(sortedPostData);
-
-    // if (process.env.PRODUCTION) {
-    //   console.log("本番環境のためRSSを生成")
-    //   generateFeedXml(sortedPostData)
-    // }
-
-    const userData = await getUserData();
-    // console.log(userData);
+    const allSortedPostsData = await getAllSortedPostsData();
 
     // tagでフィルターをかけたArticle[]をmapで開いて、ArticleCardに一つずつPropsとして渡す。
-    const filteredPostData = sortedPostData?.filter(postData => postData?.topics.includes(tag));
-
-    // console.log(sortedPostData);
-
-    console.log(tag);
-    console.log(filteredPostData);
-    console.log(3);
+    // const filteredPostData = sortedPostData?.filter(postData => postData?.topics.includes(tag));
 
   return (
-    <div className="grid lg:grid-cols-2 px-10 py-8 gap-10">
-      {sortedPostData?.filter(postData => postData?.topics.includes(tag)).map((item, index) => (
-        <Link href={`/posts/${item!.id}`} key={index} className="drop-shadow-lg duration-300 hover:opacity-60">
+    <div className="flex flex-col items-center">
+      {allSortedPostsData?.filter(postData => postData?.topics.includes(tag)).map((item, index) => (
+        <Link href={`/posts/${item!.id}`} key={index} className="w-2/3 mb-8">
           {/* imageはタグの種類分の画像を用意して、タグに合わせたサムネにする */}
-          <Image
-              src="/thumbnail_sample.JPG"
-              width={600}
-              height={600}
-              alt="Picture of the author"
-          />
-          <h2>{item?.title}</h2>
-          <p>{item?.date}</p>
+          <div style={{ boxShadow: '5px 5px 5px rgba(0, 0, 0, 0.3)', transition: 'background-color 0.3s, box-shadow 0.3s' }} >
+            <div className="image-container">
+              <Image
+                  src="/thumbnail_sample.JPG"
+                  alt="Picture of the author"
+                  layout="fill"
+                  objectFit="contain"
+              />
+            </div>
+            <div style={{ padding: '8px 10px' }}>
+              <div className="text-xl">{item?.title}</div>
+              <div style={{ color: '#9e9e9e'}}>{item?.date}</div>
+            </div>
+          </div>
         </Link>
       ))}
     </div>

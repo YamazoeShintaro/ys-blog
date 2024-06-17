@@ -19,7 +19,7 @@ import { getUserData } from "@/lib/user";
 import { fetchGithubMakeArticle, fetchGithubRepo } from "@/lib/utility/getArticle";
 import { TagProps } from "@/components/types/Props";
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { getAllPostIds } from '@/lib/posts';
+import { getAllSortedPostsData } from '@/lib/posts';
 import Header from '@/components/layouts/header/Header';
 import Date from '@/components/elements/date';
 import { remark } from 'remark';
@@ -28,33 +28,9 @@ import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 
 async function getDetailArticleData(id: string) {
-    // コンポーネント化する------------------------------------------------------------------------------------------------------------------------------
-    const zennArticles: ArticleResponse[] = await fetchGithubRepo("https://api.github.com/repos/YamazoeShintaro/zenn-articles/contents/articles");
+    const allSortedPostsData = await getAllSortedPostsData();
 
-    // console.log(zennArticles);
-
-    const datas = await (async (zennArticles) => {
-      if (zennArticles) {
-        return await Promise.all(zennArticles.map( async (article: ArticleResponse) => {
-          return fetchGithubMakeArticle("https://api.github.com/repos/YamazoeShintaro/zenn-articles/contents/articles/", article.name);
-        }));
-      }
-    })(zennArticles);
-
-    const removeFalsyDatas = datas?.filter(Boolean);
-
-    // --------------------------------------------------------------------------------------------------------------------------------------------------
-
-    const allPostsData = removeFalsyDatas;
-
-    // const paths = getAllPostIds(allPostsData);
-
-    // const params = {
-    //     paths: paths,
-    //     fallback: false,
-    // }
-
-    const postData = allPostsData?.filter(item => {
+    const postData = allSortedPostsData?.filter(item => {
         if(item?.id === id) {
           return item;
         };
@@ -103,7 +79,7 @@ export default async function Post({ params }: { params: {id: string} }) {
       <main className='flex justify-center'>
         <div className='w-4/5 max-w-400'>
           <article>
-          <h1 className=''>{articleData!.title}</h1>
+            <h1 className=''>{articleData!.title}</h1>
             <div className='mb-8'>
                 <Date dateString={articleData!.date!} />
             </div>
