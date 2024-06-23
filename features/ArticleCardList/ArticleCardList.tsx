@@ -13,7 +13,6 @@ export default async function ArticleCardList({ category }: CategoryProps) {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px', width: '90%' }}>
           {allSortedPostsData?.map((item, index) => (
             <Link href={`/posts/${item!.id}`} key={index} className="mb-8 justify-center">
-              {/* TODO: imageはタグの種類分の画像を用意して、タグに合わせたサムネにする */}
               <div style={{ boxShadow: '5px 5px 5px rgba(0, 0, 0, 0.3)', transition: 'background-color 0.3s, box-shadow 0.3s' }} >
                 <div className="image-container">
                   <Image
@@ -34,7 +33,6 @@ export default async function ArticleCardList({ category }: CategoryProps) {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px', width: '90%' }}>
           {allSortedPostsData?.filter(postData => postData?.topics.includes(category)).map((item, index) => (
             <Link href={`/posts/${item!.id}`} key={index} className="mb-8 justify-center">
-              {/* TODO: imageはタグの種類分の画像を用意して、タグに合わせたサムネにする */}
               <div style={{ boxShadow: '5px 5px 5px rgba(0, 0, 0, 0.3)', transition: 'background-color 0.3s, box-shadow 0.3s' }} >
                 <div className="image-container">
                   <Image
