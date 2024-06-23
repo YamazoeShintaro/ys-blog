@@ -5,7 +5,7 @@ export default function NodeJsPage() {
     return (
         <div>
             <MenuBar currentPage="Node.js"/>
-            <Body category="nodejs"/>
+            <Body category="nodejs" pageTitle="Node.js"/>
         </div>
   );
 };

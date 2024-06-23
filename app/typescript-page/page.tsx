@@ -5,7 +5,7 @@ export default function TsPage() {
     return (
         <div>
             <MenuBar currentPage="TypeScript"/>
-            <Body category="typescript"/>
+            <Body category="typescript" pageTitle="TypeScript"/>
         </div>
   );
 };

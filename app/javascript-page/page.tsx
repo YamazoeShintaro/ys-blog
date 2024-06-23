@@ -5,7 +5,7 @@ export default function JsPage() {
     return (
         <div>
             <MenuBar currentPage="JavaScript"/>
-            <Body category="javascript" />
+            <Body category="javascript" pageTitle="JavaScript"/>
         </div>
   );
 };
