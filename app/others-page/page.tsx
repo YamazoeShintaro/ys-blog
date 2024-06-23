@@ -5,7 +5,7 @@ export default function OthersPage() {
     return (
         <div>
             <MenuBar currentPage="others"/>
-            <Body category="その他"/>
+            <Body category="others"/>
         </div>
   );
 };

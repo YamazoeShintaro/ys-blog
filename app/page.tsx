@@ -5,7 +5,7 @@ export default async function HomePage() {
     return (
         <main>
             <MenuBar currentPage="home"/>
-            <Body category="最新記事"/>
+            <Body category="new"/>
         </main>
     );
 };

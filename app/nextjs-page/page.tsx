@@ -5,7 +5,7 @@ export default function NextJsPage() {
     return (
         <div>
             <MenuBar currentPage="Next.js"/>
-            <Body category="Next.js"/>
+            <Body category="nextjs"/>
         </div>
   );
 };

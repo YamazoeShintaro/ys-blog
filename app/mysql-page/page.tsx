@@ -5,7 +5,7 @@ export default function MySqlPage() {
     return (
         <div>
             <MenuBar currentPage="MySQL"/>
-            <Body category="MySQL"/>
+            <Body category="mysql"/>
         </div>
   );
 };

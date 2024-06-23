@@ -1,11 +1,11 @@
 import Body from "@/components/layouts/body/Body";
 import MenuBar from "@/components/layouts/menuBar/MenuBar";
 
-export default function ReactPage() {
+export default function JsPage() {
     return (
         <div>
-            <MenuBar currentPage="React"/>
-            <Body category="React"/>
+            <MenuBar currentPage="JavaScript"/>
+            <Body category="javascript" />
         </div>
   );
 };
