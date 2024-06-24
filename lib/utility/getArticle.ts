@@ -36,7 +36,7 @@ export async function fetchGithubMakeArticle(url: string, fileName: string) {
       };
       return {
         id: fileName.replace(/\.md$/, ""),
-        ...(matterResult.data as { title: string; emoji: string; type: string; topics: string[]; published: boolean; date: string; }),
+        ...(matterResult.data as { title: string; emoji: string; type: string; topics: string; published: boolean; date: string; }),
         content: matterResult.content,
         from: "Zenn"
       };
