@@ -15,11 +15,22 @@ import rehypePrism from '@mapbox/rehype-prism';
 async function getDetailArticleData(id: string) {
     const allSortedPostsData = await getAllSortedPostsData();
 
-    const postData = allSortedPostsData!.filter(item => {
-        if(item?.id === id) {
-          return item;
-        };
-    }).shift();
+    const postData = allSortedPostsData!.find(item => item?.id === id);
+
+    if (!postData) {
+      // Post not found
+      return {
+        props: {
+          articleData: null,
+        },
+      };
+    }
+
+    // const postData = allSortedPostsData!.filter(item => {
+    //     if(item?.id === id) {
+    //       return item;
+    //     };
+    // }).shift();
 
     const processedContent = await unified()
       .use(remarkParse) // Markdownを解析
