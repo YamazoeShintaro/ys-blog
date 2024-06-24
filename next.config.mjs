@@ -1,4 +1,17 @@
 /** @type {import("next").NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+    webpack: (config, { isServer }) => {
+        if (!isServer) {
+          config.node = {
+            fs: 'empty',
+            path: 'empty',
+          };
+        }
+        return config;
+      },
+      experimental: {
+        outputStandalone: true,
+      },
+};
 
 export default nextConfig;
