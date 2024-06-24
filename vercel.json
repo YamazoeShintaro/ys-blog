@@ -5,11 +5,6 @@
       "use": "@vercel/next"
     }
   ],
-  "functions": {
-    "api/**/*": {
-      "includeFiles": "path/to/your/articles/**/*"
-    }
-  },
   "rewrites": [
     {
       "source": "/(.*)",
