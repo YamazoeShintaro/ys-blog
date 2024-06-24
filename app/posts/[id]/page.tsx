@@ -19,11 +19,7 @@ async function getDetailArticleData(id: string) {
 
     if (!postData) {
       // Post not found
-      return {
-        props: {
-          articleData: null,
-        },
-      };
+      return null;
     }
 
     // const postData = allSortedPostsData!.filter(item => {
@@ -42,6 +38,7 @@ async function getDetailArticleData(id: string) {
       .use(rehypePrism) // シンタックスハイライト
       .use(rehypeStringify) // HTMLに変換
       .process(postData!.content)
+
     const contentHtml = processedContent.toString();
 
     const convertedPostData = {
@@ -49,26 +46,33 @@ async function getDetailArticleData(id: string) {
       content: contentHtml
     };
 
-    return {
-        props: {
-            articleData: convertedPostData,
-        }
-    };
+    return convertedPostData;
 };
 
 export default async function Post({ params }: { params: { id: string } }) {
-  const postAndUserData = getDetailArticleData(params.id);
-  const { articleData } = (await postAndUserData).props;
+  const articleData = await getDetailArticleData(params.id);
+
+  if (!articleData) {
+    return (
+      <main className="flex justify-center">
+        <div className="w-4/5 max-w-400">
+          <article>
+            <h1>Post not found</h1>
+          </article>
+        </div>
+      </main>
+    );
+  }
 
   return (
-    <main className='flex justify-center'>
-      <div className='w-4/5 max-w-400'>
+    <main className="flex justify-center">
+      <div className="w-4/5 max-w-400">
         <article>
-          <h1>{articleData!.title}</h1>
-          <div className='mb-8'>
-              <Date dateString={articleData!.date!} />
+          <h1>{articleData.title}</h1>
+          <div className="mb-8">
+            <Date dateString={articleData.date} />
           </div>
-          <div dangerouslySetInnerHTML={{ __html: articleData!.content }} />
+          <div dangerouslySetInnerHTML={{ __html: articleData.content }} />
         </article>
       </div>
     </main>
