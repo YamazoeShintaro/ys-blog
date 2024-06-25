@@ -7,6 +7,10 @@ import { getAllSortedPostsData } from "@/lib/posts";
 export default async function ArticleCardList({ category }: CategoryProps) {
   const allSortedPostsData = await getAllSortedPostsData();
 
+  for(const postData of allSortedPostsData!) {
+    console.log(postData!.topics);
+  }
+
   return (
     <>
       {category === "new" ?
