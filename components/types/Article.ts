@@ -3,7 +3,7 @@ export type Article = {
     title: string;
     emoji: string;
     type: string;
-    topics: string;
+    topics: string[];
     published: boolean;
     date: string;
     content: string;

@@ -16,7 +16,7 @@ export default async function ArticleCardList({ category }: CategoryProps) {
               <div style={{ boxShadow: '5px 5px 5px rgba(0, 0, 0, 0.3)', transition: 'background-color 0.3s, box-shadow 0.3s' }} >
                 <div className="image-container">
                   <Image
-                    src={`/thumbnail-images/${item?.topics}.jpg`}
+                    src={`/thumbnail-images/${item?.topics[0]}.jpg`}
                     alt="thumbnail"
                     layout="fill"
                     objectFit="contain"
@@ -31,12 +31,12 @@ export default async function ArticleCardList({ category }: CategoryProps) {
           ))}
         </div> :
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px', width: '90%' }}>
-          {allSortedPostsData?.filter(postData => postData?.topics === category).map((item, index) => (
+          {allSortedPostsData?.filter(postData => postData?.topics.includes(category)).map((item, index) => (
             <Link href={`/posts/${item!.id}`} key={index} className="mb-8 justify-center">
               <div style={{ boxShadow: '5px 5px 5px rgba(0, 0, 0, 0.3)', transition: 'background-color 0.3s, box-shadow 0.3s' }} >
                 <div className="image-container">
                   <Image
-                    src={`/thumbnail-images/${item?.topics}.jpg`}
+                    src={`/thumbnail-images/${item?.topics[0]}.jpg`}
                     alt="thumbnail"
                     layout="fill"
                     objectFit="contain"
