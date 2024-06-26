@@ -1,31 +1,58 @@
 import { ArticleResponse } from "@/components/types/Article";
 import { fetchGithubMakeArticle, fetchGithubRepo } from "@/lib/utility/getArticle";
 
+// export async function getAllSortedPostsData() {
+//   const zennArticles: ArticleResponse[] = await fetchGithubRepo("https://api.github.com/repos/YamazoeShintaro/zenn-articles/contents/articles");
+
+//   const datas = await (async (zennArticles) => {
+//     if (zennArticles) {
+//       return await Promise.all(zennArticles.map( async (article: ArticleResponse) => {
+//         return fetchGithubMakeArticle("https://api.github.com/repos/YamazoeShintaro/zenn-articles/contents/articles/", article.name);
+//       }));
+//     }
+//   })(zennArticles);
+
+//   const removeFalsyDatas = datas?.filter(Boolean);
+
+//   console.log(removeFalsyDatas);
+
+//   const allSortedPostsData = removeFalsyDatas?.sort((a, b) => {
+//     if (a!.date === b!.date){
+//       return 0;
+//     };
+//     if (a!.date < b!.date) {
+//       return 1;
+//     } else {
+//       return -1;
+//     };
+//   });
+
+//   return allSortedPostsData;
+// };
+
 export async function getAllSortedPostsData() {
-  const zennArticles: ArticleResponse[] = await fetchGithubRepo("https://api.github.com/repos/YamazoeShintaro/zenn-articles/contents/articles");
+  const zennArticles = await fetchGithubRepo("https://api.github.com/repos/YamazoeShintaro/zenn-articles/contents/articles");
 
   const datas = await (async (zennArticles) => {
     if (zennArticles) {
-      return await Promise.all(zennArticles.map( async (article: ArticleResponse) => {
-        return fetchGithubMakeArticle("https://api.github.com/repos/YamazoeShintaro/zenn-articles/contents/articles/", article.name);
+      return await Promise.all(zennArticles.map(async (article: ArticleResponse) => {
+        const articleData = await fetchGithubMakeArticle("https://api.github.com/repos/YamazoeShintaro/zenn-articles/contents/articles/", article.name);
+        return articleData || null;
       }));
     }
+    return [];
   })(zennArticles);
 
   const removeFalsyDatas = datas?.filter(Boolean);
 
-  console.log(removeFalsyDatas);
+  console.log('Filtered valid articles:', removeFalsyDatas);
 
   const allSortedPostsData = removeFalsyDatas?.sort((a, b) => {
-    if (a!.date === b!.date){
+    if (a!.date === b!.date) {
       return 0;
-    };
-    if (a!.date < b!.date) {
-      return 1;
-    } else {
-      return -1;
-    };
+    }
+    return a!.date < b!.date ? 1 : -1;
   });
 
   return allSortedPostsData;
-};
+}
