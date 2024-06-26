@@ -16,6 +16,7 @@ async function getDetailArticleData(id: string) {
     const allSortedPostsData = await getAllSortedPostsData();
 
     const postData = allSortedPostsData!.find(item => item?.id === id);
+    console.log(`Post Data for ID ${id}: ${JSON.stringify(postData)}`);
 
     if (!postData) {
       // Post not found

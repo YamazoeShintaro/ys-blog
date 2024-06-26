@@ -14,6 +14,8 @@ export async function getAllSortedPostsData() {
 
   const removeFalsyDatas = datas?.filter(Boolean);
 
+  console.log(removeFalsyDatas);
+
   const allSortedPostsData = removeFalsyDatas?.sort((a, b) => {
     if (a!.date === b!.date){
       return 0;
