@@ -12,6 +12,7 @@ export default function MenuBar({ currentPage }: CurrentPageProps) {
         { path: "/", content: <FontAwesomeIcon icon={ faHouse } className="text-xl"/>, pageName: "home", border: true },
         { path: "/javascript-page", content: "JavaScript", pageName: "JavaScript", border: true },
         { path: "/typescript-page", content: "TypeScript", pageName: "TypeScript", border: true },
+        { path: "/react-page", content: "React", pageName: "React", border: true },
         { path: "/nextjs-page", content: "Next.js", pageName: "Next.js", border: true },
         { path: "/nodejs-page", content: "Node.js", pageName: "Node.js", border: true },
         { path: "/mysql-page", content: "MySQL", pageName: "MySQL", border: true },
