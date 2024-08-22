@@ -17,7 +17,7 @@ export default function Profile() {
                     />
                 </div>
                 <h3 className="text-xl pt-3 pb-1 mx-2">YS</h3>
-                <div className="text-xs mx-2">フロントエンドエンジニア</div>
+                <div className="text-xs mx-2">エンジニア</div>
             </div>
             <p className="mx-2 px-2 border-b border-solid">猫が大好き</p>
             <p className="mx-2 px-2 mt-4 border-b border-solid">JavaScript / TypeScript / React / Next.js / MySQL</p>
