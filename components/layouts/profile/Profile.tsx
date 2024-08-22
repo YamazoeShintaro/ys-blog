@@ -22,18 +22,18 @@ export default function Profile() {
             <p className="mx-2 px-2 border-b border-solid">猫が大好き</p>
             <p className="mx-2 px-2 mt-4 border-b border-solid">JavaScript / TypeScript / React / Next.js / MySQL</p>
             <div className="flex mx-2 py-2 mt-4 border-b border-solid">
-                    <a href="https://zenn.dev/ys37799665" target="_blank" className="px-2 hover:opacity-50">
-                        <Image
-                            src="/zenn_icon.svg"
-                            alt="zenn_icon"
-                            width={28}
-                            height={28}
-                        />
-                    </a>
-                    <a href="https://github.com/YamazoeShintaro" target="_blank" className="px-2 hover:opacity-50">
-                        <FontAwesomeIcon icon={faSquareGithub} className="text-3xl"/>
-                    </a>
-                </div>
+                <a href="https://zenn.dev/ys37799665" target="_blank" className="px-2 hover:opacity-50">
+                    <Image
+                        src="/zenn_icon.svg"
+                        alt="zenn_icon"
+                        width={28}
+                        height={28}
+                    />
+                </a>
+                <a href="https://github.com/YamazoeShintaro" target="_blank" className="px-2 hover:opacity-50">
+                    <FontAwesomeIcon icon={faSquareGithub} className="text-3xl"/>
+                </a>
+            </div>
         </div>
     );
 };
